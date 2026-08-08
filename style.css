@@ -1308,3 +1308,14 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.1; }
 .tilt-card:hover {
   transition: none; /* Removing transition on hover makes the JS tracking fluid */
 }
+
+/* Timeline Marker Active State */
+.dhoni-timeline__marker {
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.dhoni-timeline__marker.is-active {
+  background: var(--gradient-flame);
+  box-shadow: 0 0 15px rgba(255, 138, 0, 0.8), inset 0 0 5px rgba(255, 255, 255, 0.8);
+  transform: translateX(-50%) scale(1.4) !important;
+  border: 2px solid var(--white);
+}

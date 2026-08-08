@@ -151,3 +151,14 @@
 
 
 
+
+@media (max-width: 768px) {
+  .dhoni-timeline__progress {
+    left: 16px;
+    transform: none;
+    width: 4px;
+  }
+  .dhoni-timeline__marker.is-active {
+    transform: scale(1.4) !important;
+  }
+}
