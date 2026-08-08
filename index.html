@@ -1135,4 +1135,41 @@
 
 
 
-  </body></html>
+  
+  <!-- Local Background Music -->
+  <audio id="bgMusic" loop>
+    <!-- Replace 'background-score.mp3' with your actual audio file name -->
+    <source src="background-score.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const bgMusic = document.getElementById('bgMusic');
+    let hasMusicPlayed = false;
+
+    // Set initial volume to 25%
+    if (bgMusic) {
+      bgMusic.volume = 0.25;
+    }
+
+    const playMusicOnInteraction = () => {
+      if (!hasMusicPlayed && bgMusic) {
+        // Play the audio
+        bgMusic.play().then(() => {
+          hasMusicPlayed = true;
+          // Remove event listeners after successful playback
+          document.removeEventListener('click', playMusicOnInteraction);
+          document.removeEventListener('scroll', playMusicOnInteraction);
+          document.removeEventListener('touchstart', playMusicOnInteraction);
+        }).catch(err => {
+          // Playback failed (browser policy might still block it in some edge cases)
+          console.log("Audio play blocked by browser:", err);
+        });
+      }
+    };
+
+    // Listen for user interactions to start music
+    document.addEventListener('click', playMusicOnInteraction);
+    document.addEventListener('scroll', playMusicOnInteraction);
+    document.addEventListener('touchstart', playMusicOnInteraction);
+  </script>
+</body></html>
