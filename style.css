@@ -1235,3 +1235,39 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.1; }
   border-radius: 4px;
   transition: height 0.1s ease-out;
 }
+
+/* ==========================================================================
+   MUSIC TOGGLE BUTTON
+   ========================================================================== */
+.btn-music {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--glass-border);
+  border-radius: 100px;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.3s ease;
+  margin-right: 0.5rem;
+}
+
+.btn-music:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+}
+
+.btn-music.is-playing {
+  color: var(--orange);
+  border-color: var(--orange);
+  animation: pulse-music 2s infinite alternate;
+}
+
+@keyframes pulse-music {
+  from { box-shadow: 0 0 5px rgba(255, 138, 0, 0.2); }
+  to { box-shadow: 0 0 15px rgba(255, 138, 0, 0.6); }
+}

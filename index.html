@@ -39,6 +39,9 @@
         <li><a href="#contact" class="navbar__link">Contact</a></li>
       </ul>
     </nav>
+    <button id="musicToggle" class="btn-music" aria-label="Toggle Background Music">
+        <i class="fa-solid fa-music"></i> <span class="btn-music__text">Play Music</span>
+    </button>
     <a href="#gallery" class="navbar__cta">Watch Moments</a>
   </header>
 
@@ -1133,4 +1136,54 @@
   </script>
 
 
+
+  <div id="ytplayer" style="display:none; position:absolute; width:0; height:0;"></div>
+  <script id="ytplayer-script">
+    const musicToggle = document.getElementById('musicToggle');
+    const musicText = musicToggle ? musicToggle.querySelector('.btn-music__text') : null;
+    const musicIcon = musicToggle ? musicToggle.querySelector('i') : null;
+    let ytPlayer;
+    let isPlaying = false;
+
+    window.onYouTubeIframeAPIReady = function() {
+      ytPlayer = new YT.Player('ytplayer', {
+        height: '0',
+        width: '0',
+        videoId: 'rs74kziMCm0',
+        playerVars: {
+          'autoplay': 0,
+          'controls': 0,
+          'loop': 1,
+          'playlist': 'rs74kziMCm0'
+        },
+        events: {
+          'onReady': onPlayerReady
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      if (musicToggle) {
+        musicToggle.addEventListener('click', () => {
+          if (isPlaying) {
+            ytPlayer.pauseVideo();
+            if(musicText) musicText.textContent = 'Play Music';
+            if(musicIcon) musicIcon.className = 'fa-solid fa-music';
+            musicToggle.classList.remove('is-playing');
+          } else {
+            ytPlayer.playVideo();
+            if(musicText) musicText.textContent = 'Pause Music';
+            if(musicIcon) musicIcon.className = 'fa-solid fa-pause';
+            musicToggle.classList.add('is-playing');
+          }
+          isPlaying = !isPlaying;
+        });
+      }
+    }
+
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  </script>
 </body></html>
