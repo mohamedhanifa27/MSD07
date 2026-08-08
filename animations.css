@@ -1,0 +1,247 @@
+/* ==========================================================================
+   ANIMATIONS.CSS — Keyframes, transitions, hover effects, loading effects
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(34px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-10px) rotate(1.5deg); }
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(24px, -18px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 138, 0, 0.35); }
+  50%      { box-shadow: 0 0 0 12px rgba(255, 138, 0, 0); }
+}
+
+@keyframes scrollTravel {
+  0%   { top: 0; opacity: 1; }
+  80%  { opacity: 1; }
+  100% { top: 90%; opacity: 0; }
+}
+
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ---------- Global transitions ---------- */
+a, .btn, .glass-card, .award-tile, .quote-card, .bento__cell,
+.masonry__item, .masonry__item img, .footer__icon, .navbar__link,
+.fact, .floating-card, .timeline__item {
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- Nav ---------- */
+.navbar__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 0%;
+  background: var(--gradient-flame);
+  transition: width 0.3s ease;
+}
+
+.navbar__link:hover { color: var(--white); }
+.navbar__link:hover::after,
+.navbar__link:focus-visible::after { width: 100%; }
+
+.navbar__cta:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 26px -8px rgba(255, 138, 0, 0.6);
+}
+
+/* ---------- Hero motion ---------- */
+.hero__glow--one { animation: drift 10s ease-in-out infinite; }
+.hero__glow--two { animation: drift 12s ease-in-out infinite reverse; }
+.hero__glow--three { animation: drift 14s ease-in-out infinite; }
+
+.hero__bgtext { animation: fadeIn 1.4s ease both; }
+
+.hero__eyebrow { animation: fadeInUp 0.8s ease both; animation-delay: 0.1s; }
+.hero__title-line { animation: fadeInUp 0.9s ease both; opacity: 0; }
+.hero__title-line:nth-child(1) { animation-delay: 0.22s; }
+.hero__title-line:nth-child(2) { animation-delay: 0.34s; }
+.hero__title-line:nth-child(3) { animation-delay: 0.46s; }
+.hero__subtitle { animation: fadeInUp 0.9s ease both; animation-delay: 0.6s; }
+.hero__actions { animation: fadeInUp 0.9s ease both; animation-delay: 0.74s; }
+
+.hero__stage { animation: scaleIn 1s ease both; animation-delay: 0.3s; }
+
+.floating-card { animation: fadeIn 1s ease both, float 5s ease-in-out infinite; }
+.floating-card--trophy { animation-delay: 0.8s, 1.4s; }
+.floating-card--ball { animation-delay: 1s, 1.8s; }
+.floating-card--bat { animation-delay: 1.2s, 2.2s; }
+
+.hero__scroll-dot { animation: scrollTravel 1.8s ease-in-out infinite; }
+
+/* ---------- Buttons: magnetic feel + ripple ---------- */
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease, height 0.5s ease, opacity 0.6s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.btn:active::before {
+  width: 260px; height: 260px; opacity: 1;
+  transition: width 0s, height 0s, opacity 0.4s ease;
+}
+
+.btn--primary:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 46px -12px rgba(255, 138, 0, 0.65); }
+.btn--ghost:hover { transform: translateY(-4px); background: rgba(255,255,255,0.1); border-color: var(--gold); }
+
+/* ---------- Section reveal ---------- */
+.section-eyebrow, .section-title { animation: fadeInUp 0.8s ease both; }
+
+.about__bio, .about__facts { animation: fadeInUp 0.9s ease both; }
+.about__facts { animation-delay: 0.15s; }
+
+/* ---------- Cards ---------- */
+.glass-card, .award-tile, .quote-card {
+  animation: scaleIn 0.7s ease both;
+}
+
+@keyframes bentoPop {
+  0% { opacity: 0; transform: scale(0.85) translateY(30px); }
+  60% { opacity: 1; transform: scale(1.03) translateY(-5px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.bento__cell {
+  animation: bentoPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.glass-card:hover {
+  transform: translateY(-10px) rotateX(2deg);
+  border-color: rgba(255, 138, 0, 0.45);
+  box-shadow: 0 30px 60px -24px rgba(255, 138, 0, 0.25);
+}
+
+.glass-card:hover .glass-card__icon {
+  transform: rotate(-8deg) scale(1.1);
+  color: var(--gold);
+}
+
+.award-tile:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 213, 74, 0.4);
+  box-shadow: 0 26px 54px -22px rgba(255, 213, 74, 0.25);
+}
+
+.bento__cell:hover {
+  transform: translateY(-8px) scale(1.03);
+  border-color: rgba(255, 138, 0, 0.5);
+  box-shadow: 0 20px 40px -15px rgba(255, 138, 0, 0.3);
+  z-index: 2;
+}
+
+.quote-card:hover {
+  transform: translateY(-6px) scale(1.015);
+  border-color: rgba(255, 200, 61, 0.4);
+  box-shadow: 0 26px 54px -22px rgba(255, 200, 61, 0.2);
+}
+
+/* Staggered entrance delays */
+.glass-grid .glass-card:nth-child(1) { animation-delay: 0.05s; }
+.glass-grid .glass-card:nth-child(2) { animation-delay: 0.14s; }
+.glass-grid .glass-card:nth-child(3) { animation-delay: 0.23s; }
+.glass-grid .glass-card:nth-child(4) { animation-delay: 0.32s; }
+.glass-grid .glass-card:nth-child(5) { animation-delay: 0.41s; }
+.glass-grid .glass-card:nth-child(6) { animation-delay: 0.5s; }
+
+.award-row .award-tile:nth-child(1) { animation-delay: 0.05s; }
+.award-row .award-tile:nth-child(2) { animation-delay: 0.15s; }
+.award-row .award-tile:nth-child(3) { animation-delay: 0.25s; }
+.award-row .award-tile:nth-child(4) { animation-delay: 0.35s; }
+
+.bento .bento__cell:nth-child(1) { animation-delay: 0.05s; }
+.bento .bento__cell:nth-child(2) { animation-delay: 0.14s; }
+.bento .bento__cell:nth-child(3) { animation-delay: 0.23s; }
+.bento .bento__cell:nth-child(4) { animation-delay: 0.32s; }
+.bento .bento__cell:nth-child(5) { animation-delay: 0.41s; }
+.bento .bento__cell:nth-child(6) { animation-delay: 0.5s; }
+.bento .bento__cell:nth-child(7) { animation-delay: 0.59s; }
+
+.quote-grid .quote-card:nth-child(1) { animation-delay: 0.05s; }
+.quote-grid .quote-card:nth-child(2) { animation-delay: 0.2s; }
+.quote-grid .quote-card:nth-child(3) { animation-delay: 0.35s; }
+
+/* ---------- Fact rows ---------- */
+.fact:hover {
+  background: rgba(255, 138, 0, 0.06);
+}
+
+/* ---------- Gallery ---------- */
+.masonry__item { animation: fadeIn 0.9s ease both; }
+.masonry__item:hover img { transform: scale(1.08); }
+.masonry__item:hover figcaption { background: linear-gradient(to top, rgba(5,5,5,0.95), transparent); }
+.masonry__item figcaption { transition: background 0.35s ease; }
+.masonry__item--tall { animation: fadeIn 0.9s ease both, floatSlow 7s ease-in-out infinite; animation-delay: 0.1s, 1s; }
+
+/* ---------- Love Life ---------- */
+.love-life__img {
+  transition: transform 0.5s ease;
+}
+
+.love-life__card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(233, 30, 99, 0.45);
+  box-shadow: 0 20px 45px -15px rgba(233, 30, 99, 0.25);
+}
+
+.love-life__card:hover .love-life__img {
+  transform: scale(1.05);
+}
+
+
+/* ---------- Footer ---------- */
+.footer__icon:hover {
+  background: var(--gradient-flame);
+  color: var(--bg-black);
+  transform: translateY(-4px) rotate(-6deg);
+  border-color: transparent;
+}

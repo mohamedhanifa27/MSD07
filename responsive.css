@@ -1,0 +1,153 @@
+/* ==========================================================================
+   RESPONSIVE.CSS — Media queries for mobile, tablet, laptop, large desktop
+   ========================================================================== */
+
+/* ---------- Large Desktop (1440px+) ---------- */
+@media (min-width: 1440px) {
+  :root { --container-width: 1380px; }
+  .hero__stage { height: 620px; }
+}
+
+/* ---------- Laptop (1024px – 1279px) ---------- */
+@media (max-width: 1279px) {
+  .glass-grid { grid-template-columns: repeat(2, 1fr); }
+  .award-grid { grid-template-columns: repeat(3, 1fr); }
+  .bento { grid-template-columns: repeat(3, 1fr); }
+  .bento__cell--hero { grid-column: span 3; grid-row: span 1; }
+  .bento__cell--wide { grid-column: span 3; }
+}
+
+/* ---------- Tablet (768px – 1023px) ---------- */
+@media (max-width: 1023px) {
+  .navbar { width: 94%; padding: 0.5rem 0.5rem 0.5rem 0.5rem; }
+  .navbar__list { gap: 1.1rem; }
+  .navbar__link { font-size: 0.8rem; }
+  .navbar__cta { display: none; }
+
+  .hero__grid { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+  .hero__eyebrow { justify-content: center; }
+  .hero__actions { justify-content: center; }
+  .hero__stage { height: 420px; max-width: 480px; margin: 0 auto; }
+  .floating-card--trophy { left: 2%; }
+  .floating-card--ball { right: 2%; }
+  .floating-card--bat { left: 6%; }
+
+  .about__grid { grid-template-columns: 1fr; gap: 2rem; }
+  .about__facts { grid-template-columns: repeat(2, 1fr); }
+
+  .glass-grid { grid-template-columns: repeat(2, 1fr); }
+  .award-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
+  .bento__cell--hero { grid-column: span 2; grid-row: span 1; }
+  .bento__cell--wide { grid-column: span 2; }
+
+  .masonry { columns: 2; }
+
+  .quote-grid { grid-template-columns: 1fr 1fr; }
+  .quote-grid .quote-card:nth-child(3) { grid-column: span 2; }
+  .quote-card--offset { transform: none; }
+
+  .footer__inner { grid-template-columns: 1fr 1fr; }
+  .footer__brand { grid-column: span 2; }
+}
+
+/* ---------- Mobile (max 767px) ---------- */
+@media (max-width: 767px) {
+  :root { --section-padding: clamp(3rem, 12vw, 4.5rem); }
+
+  .navbar {
+    top: 0.8rem;
+    border-radius: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0.7rem;
+  }
+
+  .navbar__nav { order: 3; width: 100%; overflow-x: auto; margin-top: 0.5rem; }
+  .navbar__list { gap: 1rem; width: max-content; margin: 0 auto; }
+  .navbar__link { font-size: 0.78rem; white-space: nowrap; }
+  .navbar__cta { display: none; }
+
+  html { scroll-padding-top: 120px; }
+
+  .hero { min-height: 96vh; padding-top: 6rem; }
+  .hero__title { font-size: clamp(2.2rem, 10vw, 3rem); }
+  .hero__bgtext { font-size: clamp(6rem, 30vw, 10rem); }
+  .hero__actions { flex-direction: column; max-width: 320px; margin: 2.6rem auto 0; }
+  .btn { width: 100%; }
+
+  .hero__stage { height: 340px; }
+  .floating-card { padding: 0.7rem 0.9rem; }
+  .floating-card__value { font-size: 1rem; }
+
+  .about__facts { grid-template-columns: 1fr; }
+
+  .glass-grid { grid-template-columns: 1fr; }
+  .award-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .bento { grid-template-columns: 1fr 1fr; grid-auto-rows: 140px; }
+  .bento__cell--hero { grid-column: span 2; }
+  .bento__cell--wide { grid-column: span 2; }
+
+  .masonry { columns: 1; }
+
+  .quote-grid { grid-template-columns: 1fr; }
+  .quote-grid .quote-card:nth-child(3) { grid-column: span 1; }
+
+  
+  .dhoni-timeline {
+    flex-direction: column;
+    padding: 0 1rem 3rem;
+    gap: 3rem;
+  }
+  .dhoni-timeline::before {
+    left: 16px;
+  }
+  .dhoni-timeline__era-label {
+    align-self: flex-start;
+    margin-left: 2rem;
+  }
+  .dhoni-timeline__item {
+    flex-direction: column !important;
+    align-items: flex-start;
+    transform: translateY(30px);
+  }
+  .dhoni-timeline__content-wrapper {
+    width: 100% !important;
+    padding: 0 0 0 40px !important;
+    justify-content: flex-start !important;
+  }
+  .dhoni-timeline__time {
+    width: 100% !important;
+    padding: 0 0 0.5rem 40px !important;
+    text-align: left !important;
+    font-size: 2.2rem;
+    opacity: 0.3;
+  }
+  .dhoni-timeline__item:hover .dhoni-timeline__time {
+    transform: none;
+  }
+  .dhoni-timeline__dot {
+    left: 16px !important;
+    top: 40px !important;
+    width: 18px;
+    height: 18px;
+  }
+
+  .footer__inner { grid-template-columns: 1fr; gap: 2.2rem; padding-top: 3rem; }
+  .footer__brand { grid-column: span 1; }
+}
+
+/* ---------- Small Mobile (max 420px) ---------- */
+@media (max-width: 480px) {
+  .award-grid { grid-template-columns: 1fr; }
+  .bento { grid-template-columns: 1fr; }
+  .bento__cell--hero, .bento__cell--wide { grid-column: span 1; }
+  .hero__stage { height: 280px; }
+  .floating-card { position: static; margin-top: 0.6rem; }
+  .hero__portrait { position: relative; height: 260px; }
+}
+
+
+
