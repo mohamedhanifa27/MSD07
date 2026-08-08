@@ -6,7 +6,7 @@
 :root {
   --bg-black: rgba(5, 5, 5, 0.72);
   --bg-panel: rgba(16, 16, 16, 0.68);
-  --bg-video-opacity: 1.0;
+  --bg-video-opacity: 0.75;
   --glass: rgba(255, 255, 255, 0.06);
   --glass-border: rgba(255, 255, 255, 0.08);
   --yellow: #ffd54a;
@@ -1237,3 +1237,74 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.1; }
 }
 
 
+
+/* ==========================================================================
+   FLUID INTERACTIVE ANIMATIONS
+   ========================================================================== */
+
+/* Custom Cursor */
+@media (pointer: fine) {
+  body.has-custom-cursor {
+    cursor: none;
+  }
+  body.has-custom-cursor a, 
+  body.has-custom-cursor button, 
+  body.has-custom-cursor .interactive-card,
+  body.has-custom-cursor .glass-card,
+  body.has-custom-cursor .bento__cell {
+    cursor: none;
+  }
+
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background: var(--orange);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background 0.2s;
+  }
+
+  .custom-cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 138, 0, 0.5);
+    background: rgba(255, 138, 0, 0.05);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background 0.3s, border-color 0.3s;
+    /* Spring physics achieved via JS */
+  }
+
+  /* Hover states for cursor */
+  .custom-cursor.hovering {
+    background: transparent;
+  }
+  
+  .custom-cursor-follower.hovering {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 138, 0, 0.15);
+    border-color: var(--orange);
+    box-shadow: 0 0 20px rgba(255, 138, 0, 0.4);
+  }
+}
+
+/* 3D Tilt Wrapper */
+.tilt-card {
+  transition: transform 0.1s cubic-bezier(0.25, 1, 0.5, 1);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.tilt-card:hover {
+  transition: none; /* Removing transition on hover makes the JS tracking fluid */
+}
